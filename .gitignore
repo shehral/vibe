@@ -45,3 +45,4 @@ next-env.d.ts
 CLAUDE.md
 BUILD_LOG.md
 .claude/
+.playwright-mcp/
