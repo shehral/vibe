@@ -1,6 +1,8 @@
 import type { Metadata } from 'next'
 import { Space_Grotesk, Inter, JetBrains_Mono } from 'next/font/google'
 import { GameProvider } from '@/lib/game-context'
+import { AudioProvider } from '@/components/audio/AudioManager'
+import { NavBar } from '@/components/game/NavBar'
 import './globals.css'
 
 const spaceGrotesk = Space_Grotesk({
@@ -43,7 +45,12 @@ export default function RootLayout({
     <html lang="en" className={`${spaceGrotesk.variable} ${inter.variable} ${jetbrainsMono.variable}`}>
       <body className="bg-void text-starlight font-body antialiased min-h-screen overflow-x-hidden">
         <GameProvider>
-          {children}
+          <AudioProvider>
+            <div className="pb-20">
+              {children}
+            </div>
+            <NavBar />
+          </AudioProvider>
         </GameProvider>
       </body>
     </html>
