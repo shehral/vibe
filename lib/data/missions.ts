@@ -1,9 +1,19 @@
 import type {
   Mission,
+  MissionContent,
   ChallengeType,
   PlayerStats,
   PlanetId,
 } from '../types'
+
+import { vibeWorldContent } from './missions/vibe-world'
+import { debtBeltContent } from './missions/debt-belt'
+import { mcpStationContent } from './missions/mcp-station'
+import { agentAcademyContent } from './missions/agent-academy'
+import { frameworkNebulaContent } from './missions/framework-nebula'
+import { orchestrationCitadelContent } from './missions/orchestration-citadel'
+import { securityFortressContent } from './missions/security-fortress'
+import { productionWorldsContent } from './missions/production-worlds'
 
 function makeMission(opts: {
   id: string
@@ -510,4 +520,25 @@ export function getMissionsByPlanet(planetId: string): Mission[] {
 
 export function getMissionById(id: string): Mission | undefined {
   return missions.find((m) => m.id === id)
+}
+
+// ---------------------------------------------------------------------------
+// Merge planet content into mission stubs
+// ---------------------------------------------------------------------------
+
+const allContent: Record<string, MissionContent> = {
+  ...vibeWorldContent,
+  ...debtBeltContent,
+  ...mcpStationContent,
+  ...agentAcademyContent,
+  ...frameworkNebulaContent,
+  ...orchestrationCitadelContent,
+  ...securityFortressContent,
+  ...productionWorldsContent,
+}
+
+for (const m of missions) {
+  if (allContent[m.id]) {
+    m.content = allContent[m.id]
+  }
 }

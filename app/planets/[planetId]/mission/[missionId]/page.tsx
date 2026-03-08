@@ -12,6 +12,14 @@ import { LearningPhase } from '@/components/game/LearningPhase'
 import { MissionDebrief } from '@/components/game/MissionDebrief'
 import { useGame } from '@/lib/game-context'
 import { getMissionById, getMissionsByPlanet } from '@/lib/data/missions'
+import { PromptDuel } from '@/components/games/PromptDuel'
+import { Architect } from '@/components/games/Architect'
+import { Connect } from '@/components/games/Connect'
+import { Debug } from '@/components/games/Debug'
+import { Command } from '@/components/games/Command'
+import type { TaskItem, AgentItem } from '@/components/games/Command'
+import { DialogueSystem } from '@/components/game/DialogueSystem'
+import type { DialogueNode } from '@/lib/types'
 
 type Phase = 'briefing' | 'learning' | 'challenge' | 'debrief'
 
@@ -66,6 +74,91 @@ export default function MissionPage({
   const handleReturnToPlanet = useCallback(() => {
     router.push(`/planets/${planetId}`)
   }, [planetId, router])
+
+  function renderChallenge() {
+    if (!mission) return null
+    const { data } = mission.content.challenge
+    const hasData = Object.keys(data).length > 0
+
+    if (!hasData) {
+      return (
+        <GlassPanel padding="lg" glow="terracotta">
+          <div className="space-y-6 text-center">
+            <h2 className="font-display text-2xl text-starlight tracking-wide">
+              Challenge
+            </h2>
+            <p className="font-body text-starlight-dim">
+              {mission.content.challenge.instructions ||
+                `Complete the ${mission.challengeType} challenge.`}
+            </p>
+            <Button
+              onClick={() => handleChallengeComplete(80)}
+              variant="success"
+              size="lg"
+              className="w-full"
+            >
+              Complete (Mock)
+            </Button>
+          </div>
+        </GlassPanel>
+      )
+    }
+
+    switch (mission.challengeType) {
+      case 'prompt-duel':
+        return (
+          <PromptDuel
+            scenario={data.scenario as string}
+            requiredConcepts={data.requiredConcepts as string[]}
+            onComplete={handleChallengeComplete}
+          />
+        )
+      case 'architect':
+        return (
+          <Architect
+            nodes={data.nodes as { id: string; label: string }[]}
+            slots={data.slots as { id: string; label: string; correctNodeId: string }[]}
+            onComplete={handleChallengeComplete}
+          />
+        )
+      case 'connect':
+        return (
+          <Connect
+            sources={data.sources as string[]}
+            targets={data.targets as string[]}
+            correctPairs={data.correctPairs as [number, number][]}
+            onComplete={handleChallengeComplete}
+          />
+        )
+      case 'debug':
+        return (
+          <Debug
+            code={data.code as string}
+            bugLines={data.bugLines as number[]}
+            explanations={data.explanations as Record<number, string>}
+            onComplete={handleChallengeComplete}
+          />
+        )
+      case 'command':
+        return (
+          <Command
+            tasks={data.tasks as TaskItem[]}
+            agents={data.agents as AgentItem[]}
+            correctAssignments={data.correctAssignments as Record<string, string>}
+            onComplete={handleChallengeComplete}
+          />
+        )
+      case 'dialogue':
+        return (
+          <DialogueSystem
+            nodes={(data.nodes as DialogueNode[]) || []}
+            onComplete={handleChallengeComplete}
+          />
+        )
+      default:
+        return null
+    }
+  }
 
   if (loading || !state) return null
 
@@ -155,40 +248,9 @@ export default function MissionPage({
                 stiffness: 300,
                 damping: 25,
               }}
-              className="w-full max-w-2xl mx-auto"
+              className="w-full max-w-3xl mx-auto"
             >
-              <GlassPanel padding="lg" glow="terracotta">
-                <div className="space-y-6 text-center">
-                  <h2 className="font-display text-2xl text-starlight tracking-wide">
-                    Challenge
-                  </h2>
-                  <p className="font-body text-starlight-dim">
-                    {mission.content.challenge.instructions ||
-                      `Complete the ${mission.challengeType} challenge.`}
-                  </p>
-                  <div
-                    className={clsx(
-                      'inline-block px-4 py-2 rounded-lg',
-                      'bg-terracotta/10 border border-terracotta/30',
-                      'font-mono text-sm text-terracotta'
-                    )}
-                  >
-                    Type: {mission.challengeType}
-                  </div>
-                  <p className="font-body text-xs text-starlight-dim">
-                    Challenge mechanics coming soon. Use the button below to
-                    simulate completion.
-                  </p>
-                  <Button
-                    onClick={() => handleChallengeComplete(80)}
-                    variant="success"
-                    size="lg"
-                    className="w-full"
-                  >
-                    Complete (Mock)
-                  </Button>
-                </div>
-              </GlassPanel>
+              {renderChallenge()}
             </motion.div>
           )}
 
