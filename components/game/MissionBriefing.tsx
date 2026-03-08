@@ -5,6 +5,7 @@ import { clsx } from 'clsx'
 import { GlassPanel } from '@/components/ui/GlassPanel'
 import { TypewriterText } from '@/components/ui/TypewriterText'
 import { Button } from '@/components/ui/Button'
+import { useAudio } from '@/components/audio/AudioManager'
 import type { Mission, ChallengeType } from '@/lib/types'
 
 const CHALLENGE_LABELS: Record<ChallengeType, string> = {
@@ -31,6 +32,13 @@ interface MissionBriefingProps {
 }
 
 export function MissionBriefing({ mission, onBegin }: MissionBriefingProps) {
+  const { playSFX } = useAudio()
+
+  const handleBegin = () => {
+    playSFX('warp')
+    onBegin()
+  }
+
   const briefingText =
     mission.content.briefing.length > 0
       ? mission.content.briefing[0].text
@@ -84,7 +92,7 @@ export function MissionBriefing({ mission, onBegin }: MissionBriefingProps) {
 
           {/* Begin Button */}
           <div className="pt-2">
-            <Button onClick={onBegin} variant="primary" size="lg" className="w-full">
+            <Button onClick={handleBegin} variant="primary" size="lg" className="w-full">
               Begin Mission
             </Button>
           </div>

@@ -4,6 +4,7 @@ import { useState, useCallback, useRef } from 'react'
 import { motion, AnimatePresence } from 'motion/react'
 import { clsx } from 'clsx'
 import { GlassPanel, Button } from '@/components/ui'
+import { useAudio } from '@/components/audio/AudioManager'
 
 export interface TaskItem {
   id: string
@@ -35,6 +36,7 @@ interface AssignmentResult {
 const springTransition = { type: 'spring' as const, stiffness: 400, damping: 25 }
 
 export function Command({ tasks, agents, correctAssignments, onComplete, className }: CommandProps) {
+  const { playSFX } = useAudio()
   const [assignments, setAssignments] = useState<Record<string, string>>({})
   const [selectedAgentId, setSelectedAgentId] = useState<string | null>(null)
   const [checked, setChecked] = useState(false)
@@ -84,6 +86,7 @@ export function Command({ tasks, agents, correctAssignments, onComplete, classNa
     if (selectedAgentId) {
       assignAgent(taskId, selectedAgentId)
       setSelectedAgentId(null)
+      playSFX('click')
     }
   }
 
@@ -127,6 +130,7 @@ export function Command({ tasks, agents, correctAssignments, onComplete, classNa
     setResults(assignmentResults)
     setScore(calculatedScore)
     setChecked(true)
+    playSFX(calculatedScore >= 70 ? 'success' : 'error')
   }
 
   function getTaskResult(taskId: string): AssignmentResult | undefined {

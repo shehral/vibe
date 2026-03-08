@@ -2,6 +2,7 @@
 
 import { useEffect } from 'react'
 import { useRouter } from 'next/navigation'
+import Image from 'next/image'
 import { motion } from 'motion/react'
 import { clsx } from 'clsx'
 import { useGame } from '@/lib/game-context'
@@ -78,25 +79,23 @@ export default function InventoryPage() {
                   className={clsx(!acquired && 'opacity-40')}
                 >
                   <div className="space-y-3">
-                    {/* Icon placeholder */}
+                    {/* Icon */}
                     <div className="flex items-start justify-between">
-                      <div
-                        className={clsx(
-                          'w-12 h-12 rounded-full flex items-center justify-center text-lg font-display border-2',
-                          acquired ? 'border-opacity-60' : 'border-glass-border'
-                        )}
-                        style={
-                          acquired
-                            ? {
-                                borderColor: categoryIcons[item.category],
-                                backgroundColor: `${categoryIcons[item.category]}20`,
-                                color: categoryIcons[item.category],
-                              }
-                            : { color: '#e8e0d450' }
-                        }
-                      >
-                        {acquired ? item.name[0] : '?'}
-                      </div>
+                      {acquired ? (
+                        <Image
+                          src={item.icon}
+                          alt={item.name}
+                          width={48}
+                          height={48}
+                        />
+                      ) : (
+                        <div
+                          className="w-12 h-12 rounded-full flex items-center justify-center text-lg font-display border-2 border-glass-border"
+                          style={{ color: '#e8e0d450' }}
+                        >
+                          ?
+                        </div>
+                      )}
 
                       {/* Category badge */}
                       <span

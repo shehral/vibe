@@ -59,7 +59,7 @@ export default function CockpitPage() {
     <div className="relative min-h-screen overflow-hidden">
       <StarfieldBackground speed={0.3} />
 
-      <main className="relative z-10 max-w-5xl mx-auto px-4 py-8 space-y-6">
+      <main className="relative z-10 max-w-5xl mx-auto px-4 py-6 sm:py-8 space-y-4 sm:space-y-6 pb-24">
         {/* Top section: Player identity & rank */}
         <motion.div
           initial={{ opacity: 0, y: -20 }}
@@ -68,7 +68,7 @@ export default function CockpitPage() {
         >
           <GlassPanel padding="lg">
             <div className="flex flex-col sm:flex-row sm:items-center gap-3 mb-4">
-              <h1 className="font-display text-3xl sm:text-4xl text-starlight tracking-wider">
+              <h1 className="font-display text-2xl sm:text-3xl md:text-4xl text-starlight tracking-wider">
                 {state.callsign}
               </h1>
               <span
@@ -199,9 +199,13 @@ export default function CockpitPage() {
               </div>
 
               {/* Act breakdown */}
-              <p className="text-xs font-mono text-starlight-dim">
-                Act 1: {actCounts[1]}/{actTotals[1]} | Act 2: {actCounts[2]}/{actTotals[2]} | Act 3: {actCounts[3]}/{actTotals[3]}
-              </p>
+              <div className="flex flex-wrap gap-x-3 gap-y-1 text-xs font-mono text-starlight-dim">
+                <span>Act 1: {actCounts[1]}/{actTotals[1]}</span>
+                <span className="hidden sm:inline">|</span>
+                <span>Act 2: {actCounts[2]}/{actTotals[2]}</span>
+                <span className="hidden sm:inline">|</span>
+                <span>Act 3: {actCounts[3]}/{actTotals[3]}</span>
+              </div>
             </div>
           </GlassPanel>
         </motion.div>
@@ -259,7 +263,7 @@ export default function CockpitPage() {
             >
               <GlassPanel padding="lg" glow="nebula">
                 <div className="space-y-4">
-                  <p className="text-starlight text-base leading-relaxed">
+                  <p className="text-starlight text-sm sm:text-base leading-relaxed">
                     <TypewriterText
                       text={`Welcome aboard, ${state.callsign}. I'm ARIA, your ship's AI. Open the Star Map to begin your journey. Vibe World awaits.`}
                       speed={25}

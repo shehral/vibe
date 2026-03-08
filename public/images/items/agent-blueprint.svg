@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" fill="none">
+  <!-- Cycle loop arrows (Perceive -> Plan -> Act -> Reflect) -->
+  <!-- Top arc -->
+  <path d="M 30 12 A 12 12 0 0 1 36 24" stroke="#c17147" stroke-width="1.5" fill="none"/>
+  <!-- Arrow head top-right -->
+  <path d="M 34 21 L 36 24 L 33 25" stroke="#c17147" stroke-width="1.2" fill="none"/>
+  <!-- Right arc -->
+  <path d="M 36 24 A 12 12 0 0 1 24 36" stroke="#c17147" stroke-width="1.5" fill="none"/>
+  <!-- Arrow head bottom -->
+  <path d="M 27 34 L 24 36 L 25 33" stroke="#c17147" stroke-width="1.2" fill="none"/>
+  <!-- Bottom arc -->
+  <path d="M 24 36 A 12 12 0 0 1 12 24" stroke="#c17147" stroke-width="1.5" fill="none"/>
+  <!-- Arrow head left -->
+  <path d="M 14 27 L 12 24 L 15 23" stroke="#c17147" stroke-width="1.2" fill="none"/>
+  <!-- Left arc -->
+  <path d="M 12 24 A 12 12 0 0 1 24 12" stroke="#c17147" stroke-width="1.5" fill="none"/>
+  <!-- Arrow head top -->
+  <path d="M 21 14 L 24 12 L 23 15" stroke="#c17147" stroke-width="1.2" fill="none"/>
+  <!-- Center node -->
+  <circle cx="24" cy="24" r="3" stroke="#c17147" stroke-width="1" fill="#c17147" fill-opacity="0.2"/>
+  <!-- Phase dots on circle -->
+  <circle cx="24" cy="12" r="2" fill="#c17147" fill-opacity="0.4"/>
+  <circle cx="36" cy="24" r="2" fill="#c17147" fill-opacity="0.4"/>
+  <circle cx="24" cy="36" r="2" fill="#c17147" fill-opacity="0.4"/>
+  <circle cx="12" cy="24" r="2" fill="#c17147" fill-opacity="0.4"/>
+</svg>

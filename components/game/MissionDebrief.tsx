@@ -1,9 +1,11 @@
 'use client'
 
+import { useEffect } from 'react'
 import { motion } from 'motion/react'
 import { clsx } from 'clsx'
 import { GlassPanel } from '@/components/ui/GlassPanel'
 import { Button } from '@/components/ui/Button'
+import { useAudio } from '@/components/audio/AudioManager'
 import type { Mission, StatName } from '@/lib/types'
 import { STAT_LABELS, STAT_COLORS } from '@/lib/constants'
 
@@ -44,8 +46,13 @@ function Stars({ count }: { count: number }) {
 }
 
 export function MissionDebrief({ mission, score, onNext, onReturn }: MissionDebriefProps) {
+  const { playSFX } = useAudio()
   const starCount = getStarCount(score)
   const statEntries = Object.entries(mission.statRewards) as [StatName, number][]
+
+  useEffect(() => {
+    playSFX('mission-complete')
+  }, []) // eslint-disable-line react-hooks/exhaustive-deps
 
   return (
     <motion.div

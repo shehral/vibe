@@ -78,3 +78,20 @@ html {
 .animate-title-glow {
   animation: title-glow 3s ease-in-out infinite;
 }
+
+/* Safe area support for notched devices */
+@supports (padding-bottom: env(safe-area-inset-bottom)) {
+  .pb-safe {
+    padding-bottom: env(safe-area-inset-bottom);
+  }
+}
+
+/* Prevent text overflow in code blocks on mobile */
+pre {
+  max-width: 100%;
+}
+
+/* Ensure tables scroll horizontally on mobile */
+.overflow-x-auto {
+  -webkit-overflow-scrolling: touch;
+}

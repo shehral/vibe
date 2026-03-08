@@ -1,9 +1,10 @@
 'use client'
 
-import { useState, useCallback, useMemo } from 'react'
+import { useState, useCallback, useMemo, useRef } from 'react'
 import { motion, AnimatePresence } from 'motion/react'
 import { clsx } from 'clsx'
 import { GlassPanel, TypewriterText, Button } from '@/components/ui'
+import { useAudio } from '@/components/audio/AudioManager'
 import { crewMembers } from '@/lib/data/crew'
 import type { CrewMemberDef } from '@/lib/data/crew'
 import type { DialogueNode, DialogueChoice } from '@/lib/types'
@@ -24,11 +25,13 @@ function getSpeaker(speakerId: string): CrewMemberDef | null {
 }
 
 export function DialogueSystem({ nodes, onComplete, className }: DialogueSystemProps) {
+  const { playSFX } = useAudio()
   const [currentIndex, setCurrentIndex] = useState(0)
   const [textComplete, setTextComplete] = useState(false)
   const [feedback, setFeedback] = useState<FeedbackState>(null)
   const [correctCount, setCorrectCount] = useState(0)
   const [showSummary, setShowSummary] = useState(false)
+  const lastBlipIndex = useRef(-1)
 
   const totalQuestions = useMemo(
     () => nodes.filter((n) => n.choices && n.choices.length > 0).length,
@@ -46,8 +49,9 @@ export function DialogueSystem({ nodes, onComplete, className }: DialogueSystemP
       setCurrentIndex(nextIndex)
       setTextComplete(false)
       setFeedback(null)
+      playSFX('dialogue-blip')
     }
-  }, [currentIndex, nodes.length])
+  }, [currentIndex, nodes.length, playSFX])
 
   const handleTextAreaClick = useCallback(() => {
     if (feedback) return
@@ -66,6 +70,7 @@ export function DialogueSystem({ nodes, onComplete, className }: DialogueSystemP
   const handleChoice = useCallback(
     (choice: DialogueChoice) => {
       if (choice.correct) {
+        playSFX('success')
         setCorrectCount((prev) => prev + 1)
         setFeedback({ type: 'correct', response: choice.response })
 
@@ -80,6 +85,7 @@ export function DialogueSystem({ nodes, onComplete, className }: DialogueSystemP
           }
         }, 1200)
       } else {
+        playSFX('error')
         setFeedback({ type: 'wrong', response: choice.response })
 
         // Auto-advance after showing wrong feedback
@@ -94,7 +100,7 @@ export function DialogueSystem({ nodes, onComplete, className }: DialogueSystemP
         }, 2000)
       }
     },
-    [advanceToNext]
+    [advanceToNext, playSFX]
   )
 
   const handleComplete = useCallback(() => {

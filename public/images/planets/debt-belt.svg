@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 80 80" fill="none">
+  <!-- Scattered asteroid fragments -->
+  <polygon points="12,38 18,32 24,36 20,42" stroke="#c17147" stroke-width="1.2" fill="#c17147" fill-opacity="0.1"/>
+  <polygon points="30,20 36,16 40,22 34,26" stroke="#c17147" stroke-width="1.2" fill="#c17147" fill-opacity="0.12"/>
+  <polygon points="50,30 58,26 62,34 54,36" stroke="#c17147" stroke-width="1.2" fill="#c17147" fill-opacity="0.15"/>
+  <polygon points="35,45 42,40 48,46 40,50" stroke="#c17147" stroke-width="1.5" fill="#c17147" fill-opacity="0.15"/>
+  <polygon points="55,50 62,46 66,54 58,56" stroke="#c17147" stroke-width="1" fill="#c17147" fill-opacity="0.1"/>
+  <polygon points="18,55 24,50 30,56 22,60" stroke="#c17147" stroke-width="1" fill="#c17147" fill-opacity="0.08"/>
+  <polygon points="44,60 50,56 54,62 48,66" stroke="#c17147" stroke-width="1" fill="#c17147" fill-opacity="0.1"/>
+  <!-- Small debris dots -->
+  <circle cx="28" cy="34" r="1.5" fill="#c17147" fill-opacity="0.3"/>
+  <circle cx="46" cy="24" r="1" fill="#c17147" fill-opacity="0.25"/>
+  <circle cx="64" cy="42" r="1.2" fill="#c17147" fill-opacity="0.2"/>
+</svg>

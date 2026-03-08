@@ -3,6 +3,7 @@
 import { useEffect } from 'react'
 import { useRouter } from 'next/navigation'
 import { StarMap } from '@/components/game/StarMap'
+import { PageTransition } from '@/components/ui'
 import { useGame } from '@/lib/game-context'
 
 export default function StarMapPage() {
@@ -15,5 +16,9 @@ export default function StarMapPage() {
 
   if (loading || !state) return null
 
-  return <StarMap />
+  return (
+    <PageTransition variant="warp">
+      <StarMap />
+    </PageTransition>
+  )
 }

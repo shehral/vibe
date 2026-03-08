@@ -2,6 +2,7 @@
 
 import { useEffect } from 'react'
 import { useRouter } from 'next/navigation'
+import Image from 'next/image'
 import { motion } from 'motion/react'
 import { clsx } from 'clsx'
 import { useGame } from '@/lib/game-context'
@@ -94,25 +95,23 @@ export default function CrewPage() {
                   className={clsx(!recruited && 'opacity-50')}
                 >
                   <div className="space-y-4">
-                    {/* Portrait placeholder */}
+                    {/* Portrait */}
                     <div className="flex justify-center">
-                      <div
-                        className={clsx(
-                          'w-20 h-20 rounded-full flex items-center justify-center text-2xl font-display border-2 transition-all',
-                          recruited ? 'border-opacity-60' : 'border-glass-border'
-                        )}
-                        style={
-                          recruited
-                            ? {
-                                borderColor: member.color,
-                                backgroundColor: `${member.color}20`,
-                                color: member.color,
-                              }
-                            : { color: '#e8e0d450' }
-                        }
-                      >
-                        {recruited ? member.name[0] : '?'}
-                      </div>
+                      {recruited ? (
+                        <Image
+                          src={member.portrait}
+                          alt={member.name}
+                          width={80}
+                          height={80}
+                        />
+                      ) : (
+                        <div
+                          className="w-20 h-20 rounded-full flex items-center justify-center text-2xl font-display border-2 border-glass-border"
+                          style={{ color: '#e8e0d450' }}
+                        >
+                          ?
+                        </div>
+                      )}
                     </div>
 
                     {/* Name */}

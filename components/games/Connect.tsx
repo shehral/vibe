@@ -5,6 +5,7 @@ import { motion, AnimatePresence } from 'motion/react'
 import { clsx } from 'clsx'
 import { GlassPanel } from '@/components/ui/GlassPanel'
 import { Button } from '@/components/ui/Button'
+import { useAudio } from '@/components/audio/AudioManager'
 
 interface ConnectProps {
   sources: string[]
@@ -50,6 +51,7 @@ export function Connect({
   onComplete,
   className,
 }: ConnectProps) {
+  const { playSFX } = useAudio()
   const [connections, setConnections] = useState<Connection[]>([])
   const [selectedSource, setSelectedSource] = useState<number | null>(null)
   const [results, setResults] = useState<ConnectionResult[] | null>(null)
@@ -116,6 +118,7 @@ export function Connect({
       return [...filtered, { sourceIndex: selectedSource, targetIndex }]
     })
     setSelectedSource(null)
+    playSFX('click')
 
     // Recalculate positions after connection
     requestAnimationFrame(updatePositions)
@@ -170,6 +173,7 @@ export function Connect({
 
     setResults(connectionResults)
     setScore(calculatedScore)
+    playSFX(calculatedScore >= 70 ? 'success' : 'error')
   }
 
   const getConnectionColor = (conn: Connection): string => {

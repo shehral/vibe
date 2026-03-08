@@ -27,17 +27,17 @@ export default function AcademyPage() {
     <div className="min-h-screen relative">
       <StarfieldBackground density={100} speed={0.15} />
 
-      <div className="relative z-10 max-w-5xl mx-auto px-4 py-12">
+      <div className="relative z-10 max-w-5xl mx-auto px-4 py-8 sm:py-12 pb-24">
         <motion.div
           initial={{ opacity: 0, y: -10 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ type: 'spring' as const, stiffness: 100, damping: 20 }}
-          className="text-center mb-12"
+          className="text-center mb-8 sm:mb-12"
         >
-          <h1 className="font-display text-3xl md:text-4xl text-starlight tracking-[0.2em] uppercase">
+          <h1 className="font-display text-2xl sm:text-3xl md:text-4xl text-starlight tracking-[0.15em] sm:tracking-[0.2em] uppercase">
             The Academy
           </h1>
-          <p className="font-body text-starlight-dim mt-3 text-lg">
+          <p className="font-body text-starlight-dim mt-2 sm:mt-3 text-base sm:text-lg">
             Fleet Headquarters &mdash; Real-world guides and resources
           </p>
         </motion.div>

@@ -5,6 +5,7 @@ import { motion, AnimatePresence } from 'motion/react'
 import { clsx } from 'clsx'
 import { GlassPanel } from '@/components/ui/GlassPanel'
 import { Button } from '@/components/ui/Button'
+import { useAudio } from '@/components/audio/AudioManager'
 
 // ---------------------------------------------------------------------------
 // Types
@@ -43,6 +44,7 @@ const springTransition = {
 // ---------------------------------------------------------------------------
 
 export function Architect({ nodes, slots, onComplete, className }: ArchitectProps) {
+  const { playSFX } = useAudio()
   // Map of slotId -> placed nodeId
   const [placements, setPlacements] = useState<Record<string, string>>({})
   // Which slot is being hovered during drag (for border highlight)
@@ -112,13 +114,14 @@ export function Architect({ nodes, slots, onComplete, className }: ArchitectProp
       })
       setHoveredSlotId(null)
       setDraggingNodeId(null)
+      playSFX('click')
       // Reset check state if user modifies after checking
       if (checked) {
         setChecked(false)
         setResults({})
       }
     },
-    [checked]
+    [checked, playSFX]
   )
 
   // ------- Mobile tap handlers -------
@@ -184,7 +187,10 @@ export function Architect({ nodes, slots, onComplete, className }: ArchitectProp
     }
     setResults(newResults)
     setChecked(true)
-  }, [placements, slots])
+
+    const checkScore = Math.round((correct / slots.length) * 100)
+    playSFX(checkScore >= 70 ? 'success' : 'error')
+  }, [placements, slots, playSFX])
 
   const score = checked
     ? Math.round((Object.values(results).filter(Boolean).length / slots.length) * 100)

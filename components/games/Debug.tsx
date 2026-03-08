@@ -5,6 +5,7 @@ import { motion, AnimatePresence } from 'motion/react'
 import { clsx } from 'clsx'
 import { GlassPanel } from '@/components/ui/GlassPanel'
 import { Button } from '@/components/ui/Button'
+import { useAudio } from '@/components/audio/AudioManager'
 
 interface DebugProps {
   code: string
@@ -24,6 +25,7 @@ interface LineResult {
 }
 
 export function Debug({ code, bugLines, explanations, onComplete, className }: DebugProps) {
+  const { playSFX } = useAudio()
   const [selectedLines, setSelectedLines] = useState<Set<number>>(new Set())
   const [phase, setPhase] = useState<Phase>('input')
   const [score, setScore] = useState(0)
@@ -32,6 +34,7 @@ export function Debug({ code, bugLines, explanations, onComplete, className }: D
   const lines = code.split('\n')
 
   function toggleLine(lineNumber: number) {
+    playSFX('click')
     setSelectedLines((prev) => {
       const next = new Set(prev)
       if (next.has(lineNumber)) {
@@ -69,6 +72,7 @@ export function Debug({ code, bugLines, explanations, onComplete, className }: D
 
     setLineResults(results)
     setPhase('results')
+    playSFX(computed >= 70 ? 'success' : 'error')
   }
 
   return (

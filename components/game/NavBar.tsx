@@ -123,8 +123,8 @@ export function NavBar() {
   if (HIDDEN_ROUTES.includes(pathname)) return null
 
   return (
-    <nav className="fixed bottom-0 left-0 right-0 z-50 bg-void/80 backdrop-blur-lg border-t border-glass-border">
-      <div className="flex items-center justify-around max-w-lg mx-auto py-2 px-4">
+    <nav className="fixed bottom-0 left-0 right-0 z-50 bg-void/80 backdrop-blur-lg border-t border-glass-border pb-[env(safe-area-inset-bottom)]">
+      <div className="flex items-center justify-around max-w-lg mx-auto py-2 px-2 sm:px-4">
         {navItems.map((item) => {
           const isActive = pathname.startsWith(item.href)
           return (
@@ -132,23 +132,23 @@ export function NavBar() {
               key={item.href}
               href={item.href}
               className={clsx(
-                'flex flex-col items-center gap-1 p-2 rounded-lg transition-colors',
+                'flex flex-col items-center gap-0.5 sm:gap-1 p-1.5 sm:p-2 rounded-lg transition-colors min-w-0',
                 isActive
                   ? 'text-starlight'
                   : 'text-starlight-dim hover:text-starlight/70'
               )}
             >
               <span className="w-5 h-5">{item.icon}</span>
-              <span className="text-[10px] font-display uppercase tracking-wider">
+              <span className="text-[9px] sm:text-[10px] font-display uppercase tracking-wider truncate max-w-[48px]">
                 {item.label}
               </span>
             </Link>
           )
         })}
         {/* Audio toggle */}
-        <div className="flex flex-col items-center gap-1 p-2">
+        <div className="flex flex-col items-center gap-0.5 sm:gap-1 p-1.5 sm:p-2">
           <AudioToggle />
-          <span className="text-[10px] font-display uppercase tracking-wider text-starlight-dim">
+          <span className="text-[9px] sm:text-[10px] font-display uppercase tracking-wider text-starlight-dim">
             Audio
           </span>
         </div>

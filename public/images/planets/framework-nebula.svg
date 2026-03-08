@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 80 80" fill="none">
+  <!-- Swirling nebula cloud shapes -->
+  <ellipse cx="36" cy="38" rx="20" ry="14" stroke="#4a6fa5" stroke-width="1" fill="#4a6fa5" fill-opacity="0.08" transform="rotate(-15 36 38)"/>
+  <ellipse cx="44" cy="42" rx="18" ry="12" stroke="#4a6fa5" stroke-width="0.8" fill="#4a6fa5" fill-opacity="0.06" transform="rotate(20 44 42)"/>
+  <ellipse cx="40" cy="36" rx="12" ry="16" stroke="#4a6fa5" stroke-width="0.7" fill="#4a6fa5" fill-opacity="0.05" transform="rotate(-40 40 36)"/>
+  <!-- Spiral arm hints -->
+  <path d="M 30 44 Q 36 30, 52 32" stroke="#4a6fa5" stroke-width="1.2" stroke-opacity="0.5" fill="none"/>
+  <path d="M 50 36 Q 44 50, 28 48" stroke="#4a6fa5" stroke-width="1.2" stroke-opacity="0.5" fill="none"/>
+  <!-- Star points in nebula -->
+  <circle cx="40" cy="40" r="2.5" fill="#4a6fa5" fill-opacity="0.5"/>
+  <circle cx="30" cy="36" r="1.5" fill="#4a6fa5" fill-opacity="0.3"/>
+  <circle cx="50" cy="44" r="1.5" fill="#4a6fa5" fill-opacity="0.3"/>
+  <circle cx="38" cy="28" r="1" fill="#4a6fa5" fill-opacity="0.25"/>
+  <circle cx="42" cy="52" r="1" fill="#4a6fa5" fill-opacity="0.25"/>
+</svg>

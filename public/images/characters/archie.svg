@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 80 80" fill="none">
+  <!-- Head shape -->
+  <circle cx="40" cy="34" r="16" stroke="#4a6fa5" stroke-width="1.5" fill="#4a6fa5" fill-opacity="0.1"/>
+  <!-- Eyes -->
+  <circle cx="34" cy="32" r="2" fill="#4a6fa5" fill-opacity="0.5"/>
+  <circle cx="46" cy="32" r="2" fill="#4a6fa5" fill-opacity="0.5"/>
+  <!-- Thoughtful mouth -->
+  <line x1="36" y1="39" x2="44" y2="39" stroke="#4a6fa5" stroke-width="0.8" stroke-opacity="0.3"/>
+  <!-- Brain grid pattern on top of head -->
+  <path d="M 28 28 L 32 22 L 36 26 L 40 20 L 44 26 L 48 22 L 52 28" stroke="#4a6fa5" stroke-width="0.8" stroke-opacity="0.4" fill="none"/>
+  <line x1="32" y1="22" x2="32" y2="18" stroke="#4a6fa5" stroke-width="0.5" stroke-opacity="0.25"/>
+  <line x1="40" y1="20" x2="40" y2="14" stroke="#4a6fa5" stroke-width="0.6" stroke-opacity="0.3"/>
+  <line x1="48" y1="22" x2="48" y2="18" stroke="#4a6fa5" stroke-width="0.5" stroke-opacity="0.25"/>
+  <!-- Grid nodes -->
+  <circle cx="32" cy="18" r="1.5" fill="#4a6fa5" fill-opacity="0.3"/>
+  <circle cx="40" cy="14" r="2" fill="#4a6fa5" fill-opacity="0.35"/>
+  <circle cx="48" cy="18" r="1.5" fill="#4a6fa5" fill-opacity="0.3"/>
+  <!-- Connection lines between nodes -->
+  <line x1="32" y1="18" x2="40" y2="14" stroke="#4a6fa5" stroke-width="0.4" stroke-opacity="0.2"/>
+  <line x1="40" y1="14" x2="48" y2="18" stroke="#4a6fa5" stroke-width="0.4" stroke-opacity="0.2"/>
+  <!-- Neck -->
+  <line x1="40" y1="50" x2="40" y2="62" stroke="#4a6fa5" stroke-width="1" stroke-opacity="0.3"/>
+  <line x1="34" y1="58" x2="46" y2="58" stroke="#4a6fa5" stroke-width="0.8" stroke-opacity="0.2"/>
+</svg>

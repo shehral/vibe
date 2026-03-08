@@ -397,16 +397,14 @@ export function StarMap({ className }: StarMapProps) {
     return prereq ? prereq.name : ''
   }, [])
 
-  // Click handler
-  const handleClick = useCallback(
-    (e: React.MouseEvent<HTMLCanvasElement>) => {
-      const canvas = canvasRef.current
-      if (!canvas || !state) return
-      const rect = canvas.getBoundingClientRect()
-      const clickX = e.clientX - rect.left
-      const clickY = e.clientY - rect.top
+  // Shared hit-test logic for both click and touch
+  const handleInteraction = useCallback(
+    (interactX: number, interactY: number, isTouch: boolean) => {
+      if (!state) return
       const width = window.innerWidth
       const height = window.innerHeight
+      const hitRadius = isTouch ? 40 : 30
+      const academyHitRadius = isTouch ? 35 : 25
 
       // Check academy click
       const { cx: acx, cy: acy } = toCanvas(
@@ -415,7 +413,7 @@ export function StarMap({ className }: StarMapProps) {
         width,
         height
       )
-      if (Math.abs(clickX - acx) < 25 && Math.abs(clickY - acy) < 25) {
+      if (Math.abs(interactX - acx) < academyHitRadius && Math.abs(interactY - acy) < academyHitRadius) {
         router.push('/academy')
         return
       }
@@ -423,8 +421,8 @@ export function StarMap({ className }: StarMapProps) {
       // Check planet clicks
       for (const planet of planets) {
         const { cx, cy } = toCanvas(planet.position.x, planet.position.y, width, height)
-        const dist = Math.sqrt((clickX - cx) ** 2 + (clickY - cy) ** 2)
-        if (dist < 30) {
+        const dist = Math.sqrt((interactX - cx) ** 2 + (interactY - cy) ** 2)
+        if (dist < hitRadius) {
           const status = getPlanetStatus(
             planet.id as PlanetId,
             state,
@@ -446,6 +444,30 @@ export function StarMap({ className }: StarMapProps) {
       }
     },
     [state, router, toCanvas, getPrereqName]
+  )
+
+  // Click handler (mouse)
+  const handleClick = useCallback(
+    (e: React.MouseEvent<HTMLCanvasElement>) => {
+      const canvas = canvasRef.current
+      if (!canvas) return
+      const rect = canvas.getBoundingClientRect()
+      handleInteraction(e.clientX - rect.left, e.clientY - rect.top, false)
+    },
+    [handleInteraction]
+  )
+
+  // Touch handler
+  const handleTouchEnd = useCallback(
+    (e: React.TouchEvent<HTMLCanvasElement>) => {
+      const canvas = canvasRef.current
+      if (!canvas || e.changedTouches.length === 0) return
+      e.preventDefault() // Prevent click from also firing
+      const rect = canvas.getBoundingClientRect()
+      const touch = e.changedTouches[0]
+      handleInteraction(touch.clientX - rect.left, touch.clientY - rect.top, true)
+    },
+    [handleInteraction]
   )
 
   // Hover cursor change
@@ -493,8 +515,10 @@ export function StarMap({ className }: StarMapProps) {
     <canvas
       ref={canvasRef}
       onClick={handleClick}
+      onTouchEnd={handleTouchEnd}
       onMouseMove={handleMouseMove}
       className={clsx('fixed inset-0', className)}
+      style={{ touchAction: 'manipulation' }}
     />
   )
 }

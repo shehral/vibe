@@ -2,6 +2,7 @@
 
 import { motion } from 'motion/react'
 import { clsx } from 'clsx'
+import { useAudio } from '@/components/audio/AudioManager'
 
 interface ButtonProps {
   children: React.ReactNode
@@ -28,10 +29,19 @@ const sizeStyles = {
 }
 
 export function Button({ children, variant = 'primary', size = 'md', disabled, onClick, className, type = 'button' }: ButtonProps) {
+  const { playSFX } = useAudio()
+
+  const handleClick = () => {
+    if (!disabled) {
+      playSFX('click')
+    }
+    onClick?.()
+  }
+
   return (
     <motion.button
       type={type}
-      onClick={onClick}
+      onClick={handleClick}
       disabled={disabled}
       className={clsx(
         'font-display uppercase tracking-wider border rounded-xl backdrop-blur-sm transition-colors',

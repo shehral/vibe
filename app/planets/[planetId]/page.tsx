@@ -2,6 +2,7 @@
 
 import React, { useEffect, useMemo } from 'react'
 import { useRouter } from 'next/navigation'
+import Image from 'next/image'
 import { motion } from 'motion/react'
 import { clsx } from 'clsx'
 import { StarfieldBackground } from '@/components/ui/StarfieldBackground'
@@ -223,12 +224,21 @@ export default function PlanetPage({
               {ACT_LABELS[planet.act]}
             </span>
           </div>
-          <h1
-            className="font-display text-4xl tracking-wide"
-            style={{ color: planet.color }}
-          >
-            {planet.name}
-          </h1>
+          <div className="flex items-center gap-4">
+            <Image
+              src={`/images/planets/${planet.id}.svg`}
+              alt={planet.name}
+              width={64}
+              height={64}
+              className="inline-block flex-shrink-0"
+            />
+            <h1
+              className="font-display text-4xl tracking-wide"
+              style={{ color: planet.color }}
+            >
+              {planet.name}
+            </h1>
+          </div>
           <p className="font-display text-lg text-starlight-dim">
             {planet.subtitle}
           </p>

@@ -23,11 +23,11 @@ function ContentBlock({ block, index }: { block: AcademyContentBlock; index: num
           transition={{ ...springTransition, delay }}
         >
           {block.level === 3 ? (
-            <h3 className="font-display text-lg text-nebula uppercase tracking-wider mt-8 mb-3">
+            <h3 className="font-display text-base sm:text-lg text-nebula uppercase tracking-wider mt-6 sm:mt-8 mb-3">
               {block.content}
             </h3>
           ) : (
-            <h2 className="font-display text-xl text-starlight uppercase tracking-wider mt-10 mb-4">
+            <h2 className="font-display text-lg sm:text-xl text-starlight uppercase tracking-wider mt-8 sm:mt-10 mb-4">
               {block.content}
             </h2>
           )}
@@ -63,11 +63,11 @@ function ContentBlock({ block, index }: { block: AcademyContentBlock; index: num
           )}
           <pre
             className={clsx(
-              'bg-void/60 border border-glass-border p-4 overflow-x-auto',
+              'bg-void/60 border border-glass-border p-3 sm:p-4 overflow-x-auto',
               block.language ? 'rounded-b-lg' : 'rounded-lg'
             )}
           >
-            <code className="font-mono text-sm text-starlight leading-relaxed whitespace-pre">
+            <code className="font-mono text-xs sm:text-sm text-starlight leading-relaxed whitespace-pre">
               {block.content}
             </code>
           </pre>
@@ -112,9 +112,9 @@ function ContentBlock({ block, index }: { block: AcademyContentBlock; index: num
           initial={{ opacity: 0, y: 8 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ ...springTransition, delay }}
-          className="mb-4 overflow-x-auto"
+          className="mb-4 overflow-x-auto -mx-4 px-4 sm:mx-0 sm:px-0"
         >
-          <table className="w-full border-collapse">
+          <table className="w-full border-collapse min-w-[400px]">
             <thead>
               <tr>
                 {block.headers.map((header, i) => (
@@ -255,7 +255,7 @@ export default function SectionPage({
     <div className="min-h-screen relative">
       <StarfieldBackground density={80} speed={0.1} />
 
-      <div className="relative z-10 max-w-3xl mx-auto px-4 py-12">
+      <div className="relative z-10 max-w-3xl mx-auto px-4 py-8 sm:py-12 pb-24">
         {/* Back link */}
         <motion.div
           initial={{ opacity: 0 }}
@@ -278,10 +278,10 @@ export default function SectionPage({
           transition={springTransition}
           className="mb-10"
         >
-          <span className="font-display text-4xl text-nebula/30">
+          <span className="font-display text-3xl sm:text-4xl text-nebula/30">
             {String(section.number).padStart(2, '0')}
           </span>
-          <h1 className="font-display text-2xl md:text-3xl text-starlight tracking-wider uppercase mt-2">
+          <h1 className="font-display text-xl sm:text-2xl md:text-3xl text-starlight tracking-wider uppercase mt-2">
             {section.title}
           </h1>
           <p className="font-body text-starlight-dim mt-3">
@@ -309,7 +309,7 @@ export default function SectionPage({
           initial={{ opacity: 0, y: 10 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ ...springTransition, delay: 0.3 }}
-          className="flex items-center justify-between mt-12 pt-8 border-t border-glass-border"
+          className="flex flex-col sm:flex-row items-center justify-between gap-3 mt-8 sm:mt-12 pt-6 sm:pt-8 border-t border-glass-border"
         >
           {prevSection ? (
             <Link href={`/academy/${prevSection.id}`}>

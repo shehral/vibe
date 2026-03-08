@@ -4,6 +4,7 @@ import { useState } from 'react'
 import { motion, AnimatePresence } from 'motion/react'
 import { clsx } from 'clsx'
 import { GlassPanel, Button } from '@/components/ui'
+import { useAudio } from '@/components/audio/AudioManager'
 
 interface PromptDuelProps {
   scenario: string
@@ -20,6 +21,7 @@ interface ConceptResult {
 const springTransition = { type: 'spring' as const, stiffness: 400, damping: 25 }
 
 export function PromptDuel({ scenario, requiredConcepts, onComplete, className }: PromptDuelProps) {
+  const { playSFX } = useAudio()
   const [prompt, setPrompt] = useState('')
   const [submitted, setSubmitted] = useState(false)
   const [results, setResults] = useState<ConceptResult[]>([])
@@ -38,6 +40,7 @@ export function PromptDuel({ scenario, requiredConcepts, onComplete, className }
     setResults(conceptResults)
     setScore(calculatedScore)
     setSubmitted(true)
+    playSFX(calculatedScore >= 70 ? 'success' : 'error')
   }
 
   return (

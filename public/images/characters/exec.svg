@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 80 80" fill="none">
+  <!-- Head shape -->
+  <circle cx="40" cy="34" r="16" stroke="#c17147" stroke-width="1.5" fill="#c17147" fill-opacity="0.1"/>
+  <!-- Eyes - determined -->
+  <line x1="32" y1="31" x2="37" y2="31" stroke="#c17147" stroke-width="1.5" stroke-opacity="0.6"/>
+  <line x1="43" y1="31" x2="48" y2="31" stroke="#c17147" stroke-width="1.5" stroke-opacity="0.6"/>
+  <!-- Determined mouth -->
+  <line x1="35" y1="39" x2="45" y2="39" stroke="#c17147" stroke-width="1" stroke-opacity="0.4"/>
+  <!-- Lightning bolt / action symbol -->
+  <path d="M 56 14 L 50 28 L 56 28 L 48 44" stroke="#c17147" stroke-width="1.5" stroke-opacity="0.5" fill="none" stroke-linejoin="round"/>
+  <!-- Action arrows -->
+  <path d="M 16 26 L 24 26" stroke="#c17147" stroke-width="1" stroke-opacity="0.35"/>
+  <path d="M 21 23 L 24 26 L 21 29" stroke="#c17147" stroke-width="0.8" stroke-opacity="0.35" fill="none"/>
+  <path d="M 16 34 L 22 34" stroke="#c17147" stroke-width="0.8" stroke-opacity="0.25"/>
+  <path d="M 19 31 L 22 34 L 19 37" stroke="#c17147" stroke-width="0.6" stroke-opacity="0.25" fill="none"/>
+  <!-- Neck -->
+  <line x1="40" y1="50" x2="40" y2="62" stroke="#c17147" stroke-width="1" stroke-opacity="0.3"/>
+  <line x1="34" y1="58" x2="46" y2="58" stroke="#c17147" stroke-width="0.8" stroke-opacity="0.2"/>
+</svg>
