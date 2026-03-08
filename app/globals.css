@@ -1,26 +1,63 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+@theme {
+  --color-void: #0a0f1a;
+  --color-void-light: #111827;
+  --color-nebula: #4a6fa5;
+  --color-nebula-light: #5d85bf;
+  --color-nebula-dark: #3a5a8a;
+  --color-signal: #6b9e78;
+  --color-signal-light: #7fb88d;
+  --color-signal-dark: #5a8766;
+  --color-terracotta: #c17147;
+  --color-terracotta-light: #d4855c;
+  --color-terracotta-dark: #a85e3a;
+  --color-starlight: #e8e0d4;
+  --color-starlight-dim: #b8b0a4;
+  --color-glass: rgba(255, 255, 255, 0.05);
+  --color-glass-border: rgba(255, 255, 255, 0.1);
+  --color-glass-hover: rgba(255, 255, 255, 0.08);
+  --color-glass-active: rgba(255, 255, 255, 0.12);
+
+  --font-display: "Space Grotesk", system-ui, sans-serif;
+  --font-body: "Inter", system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, monospace;
+
+  --shadow-glow-nebula: 0 0 20px rgba(74, 111, 165, 0.3);
+  --shadow-glow-signal: 0 0 20px rgba(107, 158, 120, 0.3);
+  --shadow-glow-terracotta: 0 0 20px rgba(193, 113, 71, 0.3);
+  --shadow-glow-starlight: 0 0 20px rgba(232, 224, 212, 0.2);
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
-}
-
+/* Base styles */
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background-color: var(--color-void);
+  color: var(--color-starlight);
+  font-family: var(--font-body);
+}
+
+/* Smooth scrolling */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Selection color */
+::selection {
+  background-color: rgba(74, 111, 165, 0.3);
+  color: var(--color-starlight);
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: var(--color-void);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--color-glass-border);
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-glass-hover);
 }
