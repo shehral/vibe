@@ -8,6 +8,13 @@ export const howBuiltContent: AcademyContentBlock[] = [
     level: 2,
   },
   {
+    type: 'link-card',
+    title: 'View the Source Code on GitHub',
+    url: 'https://github.com/shehral/vibe',
+    description: 'Full source code, build playbook, and hackathon quick-reference guide. The README walks through the entire multi-agent development process.',
+    source: 'GitHub',
+  },
+  {
     type: 'paragraph',
     content:
       'Vibe Voyager was built entirely with Claude Code (Opus 4.6) using subagent-driven development. Every line of code, every component, every game mechanic was written by AI agents orchestrated from a single terminal. No copy-pasting from tutorials, no manual scaffolding — just a human director and a fleet of specialized agents working in parallel.',
