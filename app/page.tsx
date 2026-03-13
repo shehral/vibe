@@ -150,7 +150,7 @@ export default function Home() {
                       An interactive space exploration game teaching vibe coding, agentic AI, and modern software engineering practices. Journey from beginner to fleet commander across 8 planets, 34 missions, and 10 Academy sections.
                     </p>
                     <div className="space-y-2 text-xs font-mono text-starlight-dim/70">
-                      <p>Built by <span className="text-nebula">Shehral Ali</span></p>
+                      <p>Built by <span className="text-nebula">Ali Shehral</span></p>
                       <p>Powered by <span className="text-nebula">Claude Code</span> with parallel agent teams</p>
                       <p>Stack: Next.js 15, TypeScript, Tailwind v4, Motion, Canvas, Howler.js</p>
                     </div>

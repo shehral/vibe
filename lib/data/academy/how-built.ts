@@ -65,7 +65,7 @@ export const howBuiltContent: AcademyContentBlock[] = [
   {
     type: 'paragraph',
     content:
-      'The entire project was built in approximately one week, starting on March 7, 2026. The first day was spent on brainstorming and planning — exploring the design space, researching the AI tools landscape, writing a detailed design document, and creating a 9-phase implementation plan with 39 discrete tasks. Implementation began on March 8 and proceeded through parallel agent waves.',
+      'The entire game was built in a single ~66-minute coding session on the night of March 7-8, 2026. Brainstorming and planning happened earlier that day — exploring the design space, researching the AI tools landscape, writing a detailed design document, and creating a 9-phase implementation plan with 39 discrete tasks. At 11:58 PM, the first commit landed. By 1:00 AM, 14,400+ lines of production TypeScript were written, committed, and type-checked. Polish followed the next morning.',
   },
 
   // --- Build Phases ---
@@ -77,27 +77,26 @@ export const howBuiltContent: AcademyContentBlock[] = [
   {
     type: 'paragraph',
     content:
-      'The implementation plan decomposed the entire project into 9 phases. Each phase was designed so that its tasks could run in parallel — multiple agents writing to different files simultaneously, with the main thread handling git commits after each wave completed.',
+      'The implementation plan decomposed the entire project into 8 build phases plus deployment. Each phase was designed so that its tasks could run in parallel — multiple agents writing to different files simultaneously, with the main thread handling git commits after each wave completed. The timestamps below come directly from the git log.',
   },
   {
     type: 'table',
-    headers: ['Phase', 'Description', 'Agents', 'Lines Added', 'Key Output'],
+    headers: ['Time', 'Phase', 'Agents', 'Duration', 'Key Output'],
     rows: [
-      ['1', 'Scaffolding', '2 (sequential)', '-', 'Next.js 15 project + Tailwind v4 design system'],
-      ['2', 'Core Infrastructure', '4 (parallel)', '1,835', 'Game state, UI library, audio system, data layer'],
-      ['3', 'Core Screens', '5 (parallel)', '~1,461', 'Title, character creation, cockpit, star map, nav bar'],
-      ['4', 'Game Systems', '3 (parallel)', '~1,561', 'Dialogue system, mission framework, inventory/crew pages'],
-      ['5', 'Mini-Games', '5 (parallel)', '~1,718', 'PromptDuel, Architect, Connect, Debug, Command'],
-      ['6', 'Planet Content', '8 (parallel)', '-', '34 missions across 8 planets with dialogue and challenges'],
-      ['7', 'Academy Content', '5 (parallel)', '-', '10 real-world tooling and career guides'],
-      ['8', 'Polish', '4 (parallel)', '-', 'Transitions, audio, responsive design, visual assets'],
-      ['9', 'Deployment', '1', '-', 'Vercel deployment at vibe.shehral.com'],
+      ['23:58', '1. Scaffolding', '1 (sequential)', '7 min', 'Next.js 15 + Tailwind v4 design system'],
+      ['00:05', '2. Core Infrastructure', '4 (parallel)', '7 min', 'Game state, UI library, audio, data layer (1,835 lines)'],
+      ['00:12', '3. Core Screens', '5 (parallel)', '10 min', 'Title, character creation, cockpit, star map, nav (~1,461 lines)'],
+      ['00:22', '4. Game Systems', '3 (parallel)', '5 min', 'Dialogue, missions, inventory/crew (~1,561 lines)'],
+      ['00:27', '5. Mini-Games', '5 (parallel)', '6 min', 'PromptDuel, Architect, Connect, Debug, Command (~1,718 lines)'],
+      ['00:33', '6. Planet Content', '8 (parallel)', '26 min', '34 missions across 8 planets (4,455 lines)'],
+      ['00:33', '7. Academy Content', '5 (parallel)', 'concurrent*', '10 real-world guides (3,055 lines)'],
+      ['11:42', '8. Polish', '4 (parallel)', 'next AM', 'Transitions, audio SFX, mobile, 20 SVGs'],
     ],
   },
   {
     type: 'callout',
     content:
-      'Phases 2-5 alone produced over 6,500 lines of production code with zero type errors across all parallel agent work. Each agent wrote to isolated files, so there were no merge conflicts to resolve.',
+      '* Phases 6 and 7 ran concurrently — academy agents finished while planet content agents were still writing. 61% of wall time was agent execution, 36% was orchestration overhead (dispatching, reviewing, committing), and only 3% was debugging.',
     variant: 'info',
   },
 
@@ -193,15 +192,16 @@ export const howBuiltContent: AcademyContentBlock[] = [
     type: 'table',
     headers: ['Metric', 'Value'],
     rows: [
-      ['Total lines of code', '10,000+'],
-      ['Total agent invocations', '30+'],
-      ['Parallel agent waves', '9'],
-      ['Max agents in a single wave', '8 (Phase 6: Planet Content)'],
+      ['Wall clock (core build)', '~66 minutes'],
+      ['Total lines of TypeScript', '~14,400'],
+      ['Source files', '61'],
+      ['Total agent invocations', '35+'],
+      ['Max agents in a single wave', '13 (Phases 6+7 concurrent)'],
       ['Type errors across all parallel work', '0'],
-      ['Git commits', '30+'],
-      ['Implementation phases', '9'],
+      ['Git commits', '26'],
+      ['Implementation phases', '8'],
       ['Discrete tasks in plan', '39'],
-      ['File conflicts between agents', '0'],
+      ['Merge conflicts between agents', '0'],
     ],
   },
   {
@@ -219,7 +219,7 @@ export const howBuiltContent: AcademyContentBlock[] = [
   {
     type: 'paragraph',
     content:
-      'Vibe Voyager demonstrates that agentic development is not a theoretical concept — it is a practical methodology that can produce a complete, polished application in days rather than weeks. The human role shifts from writing every line to directing the architecture, decomposing work, and reviewing output. The agents handle the volume; the human handles the vision.',
+      'Vibe Voyager demonstrates that agentic development is not a theoretical concept — it is a practical methodology that produced 14,400 lines of production TypeScript in 66 minutes. The human role shifts from writing every line to directing the architecture, decomposing work, and reviewing output. The agents handle the volume; the human handles the vision. Post-build analysis showed the session could be optimized to ~35 minutes by merging independent phases into larger waves and eliminating orchestration gaps.',
   },
   {
     type: 'callout',
