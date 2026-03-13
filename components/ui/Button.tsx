@@ -31,12 +31,12 @@ const sizeStyles = {
 export function Button({ children, variant = 'primary', size = 'md', disabled, onClick, className, type = 'button' }: ButtonProps) {
   const { playSFX } = useAudio()
 
-  const handleClick = () => {
-    if (!disabled) {
-      playSFX('click')
-    }
-    onClick?.()
-  }
+  const handleClick = onClick
+    ? () => {
+        if (!disabled) playSFX('click')
+        onClick()
+      }
+    : undefined
 
   return (
     <motion.button
